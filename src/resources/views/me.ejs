@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản Lý Gửi Xe Thông Minh</title>
+    <link rel="shortcut icon" href="/logos/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/me.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+    <%- include('partials/header') %>
+    <%- include('partials/banner') %>
+    <% if (typeof user!=='undefined') { %>
+    <div class="app">
+        <div class="container">
+            <div class="me">
+                <div class="me__left">
+                    <div class="avatar__cover">
+                        <a href="#"><i class="fa-solid fa-camera"></i></a>
+                        <div class="avatar">
+                            <img src="/imgs/default-user.png" alt="avatar">
+                        </div>
+                    </div>
+                    <div class="name">
+                        <span><%= user.name %></span>
+                    </div>
+                </div>
+                <div class="me__right">
+                    <a href="#" id="updateInfo">
+                        <i class="fa-regular fa-pen-to-square"></i>
+                        Update
+                    </a>
+                    <div class="info__cover">
+                        <div class="info">
+                            Infomation
+                        </div>
+                        <form action="/me/update" class="info__form" method="post">
+                            <div class="info__item">
+                                <label class="info__pro" for="meName">Name:</label>
+                                <input type="text" name="name" id="meName" class="info__value" value="<%= user.name %>">
+                            </div>
+                            <div class="info__item">
+                                <label class="info__pro" for="meEmail">Email:</label>
+                                <input type="text" name="email" id="meEmail" class="info__value" value="<%= user.email %>">
+                            </div>
+                            <div class="info__item">
+                                <label class="info__pro" for="meBirthday">Birthday:</label>
+                                <input type="date" name="birth" id="meBirthday" class="info__value" value="2002-06-16">
+                            </div>
+                            <div class="info__item">
+                                <label class="info__pro" for="meAddress">Address:</label>
+                                <input type="text" name="add" id="meAddress" class="info__value" value="<%= user.add %>">
+                            </div>
+                            <div class="info__item">
+                                <label class="info__pro" for="mephoneNum">Phone:</label>
+                                <input type="text" name="phoneNum" id="mephoneNum" class="info__value" value="<%= user.phoneNum %>">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <% } %>
+    <%- include('partials/footer') %>
+    <script>
+        $(document).ready(() => {
+            $('#updateInfo').click(() => {
+                $('.info__form').submit();
+            });
+        });
+    </script>
+</body>
+</html>
